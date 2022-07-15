@@ -1,6 +1,12 @@
-import { Configuration } from 'webpack';
-import * as ProgressBarPlugin from 'progress-bar-webpack-plugin';
+import * as path from 'path';
+import * as webpack from 'webpack';
 
 export default {
-  plugins: [new ProgressBarPlugin()],
-} as Configuration;
+  plugins: [
+    new webpack.DllReferencePlugin({
+      manifest: require('./dll/vendor-manifest.json'),
+      context: path.resolve(__dirname, '.'),
+    }),
+    // new ProgressBarPlugin(),
+  ],
+} as webpack.Configuration;
