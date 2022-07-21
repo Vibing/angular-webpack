@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "bundle-report": "ng build --prod --stats-json && npx webpack-bundle-analyzer dist/stats.json",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dll": "rm -rf dll && webpack --config webpack.dll.js"
