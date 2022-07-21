@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { StateService } from './state.service';
+import { StateService } from '@store';
 
 const initialState = {
   title: 'here',

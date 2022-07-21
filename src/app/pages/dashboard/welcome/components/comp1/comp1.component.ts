@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { PageStoreService } from '../page-store.service';
+import { PageStoreService } from '../../store/store.service';
 
 @Component({
   selector: 'app-comp1',
-  templateUrl: './comp1.component.html',
-  styleUrls: ['./comp1.component.less'],
+  template: `
+    <div style="background:#BDD7F2;padding:10px;">
+      <h4>LazyLoaded：comp1</h4>
+      <p>store state 1：{{ store.title }}</p>
+      <p>store state 2：{{ store.message }}</p>
+      <button (click)="changeTitle()">change state1</button>
+    </div>
+  `,
 })
 export class Comp1Component implements OnInit {
   get store() {
@@ -19,6 +25,5 @@ export class Comp1Component implements OnInit {
     this.pageStore.setState({
       title: `${new Date().getTime()}`,
     });
-    console.log(this.store.title);
   }
 }

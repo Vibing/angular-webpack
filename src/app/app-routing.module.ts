@@ -7,8 +7,8 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () =>
       import(
-        /* webpackChunkName: "welcomeModule" */ './pages/dashboard/welcome/welcome.module'
-      ).then((m) => m.WelcomeModule),
+        /* webpackChunkName: "DashboardModule" */ './pages/dashboard/dashboard.module'
+      ).then((m) => m.DashboardModule),
   },
 ];
 
