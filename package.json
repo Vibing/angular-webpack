@@ -5,10 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "bundle-report": "ng build --prod --stats-json && npx webpack-bundle-analyzer dist/stats.json",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "dll": "rm -rf dll && webpack --config webpack.dll.js"
+    "dll": "rm -rf dll && webpack --config webpack.dll.js",
+    "explorer": "source-map-explorer dist/**/*.js"
   },
   "private": true,
   "dependencies": {
@@ -45,6 +45,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "progress-bar-webpack-plugin": "^2.1.0",
+    "source-map-explorer": "^2.5.2",
     "typescript": "~4.3.5",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.10.0",
