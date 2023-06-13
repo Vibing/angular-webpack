@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { WorkPlaceComponent } from './work-place/work-place.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       import(
         /* webpackChunkName: "m_monitor" */ './monitor/monitor.module'
       ).then((m) => m.MonitorModule),
+  },
+  {
+    path: 'workplace',
+    component: WorkPlaceComponent,
   },
 ];
 
