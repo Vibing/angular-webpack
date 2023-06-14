@@ -10,4 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [InfoComponent],
   providers: [],
 })
-export class InfoModule {}
+export class InfoModule {
+  getInfoComponent() {
+    return InfoComponent;
+  }
+}

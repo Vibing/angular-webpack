@@ -1,6 +1,16 @@
-info apge
+<section style="margin: 20px; padding: 20px; border: 1px solid">
+  <h3>InfoComponent</h3>
+  <code>
+    <pre>
+接收的数据： {{ data | json }}
+  </pre
+    >
+  </code>
 
-<nz-date-picker
-  [(ngModel)]="date"
-  (ngModelChange)="onChange($event)"
-></nz-date-picker>
+  <nz-date-picker
+    [(ngModel)]="date"
+    (ngModelChange)="onChange($event)"
+  ></nz-date-picker>
+
+  <button (click)="callback()">event emit</button>
+</section>
