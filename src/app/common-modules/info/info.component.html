@@ -6,7 +6,7 @@
   </pre
     >
   </code>
-
+  <h3>Name: {{ transformData.info?.name | json }}</h3>
   <nz-date-picker [(ngModel)]="date"></nz-date-picker>
 
   <button (click)="callback()">event emit</button>
