@@ -4,6 +4,7 @@
 - 组件级代码分割
 - 使用 webpack DLL
 - 使用 service 配合 rxjs 做状态管理及状态共享
+- 按需加载模块和组件
 
 ### 页面级代码分割
 
@@ -32,14 +33,7 @@
 核心代码：
 
 ```typescript
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ComponentFactoryResolver,
-  OnInit,
-  ViewChild,
-  ViewContainerRef,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 
 @Component({
   selector: "app-welcome",
@@ -57,14 +51,10 @@ export class WelcomeComponent implements OnInit {
 
   async loadComponent() {
     // lazyLoad组件
-    const { Comp1Component } = await import(
-      /* webpackChunkName: "comp1" */ "./comp1/comp1.component"
-    );
+    const { Comp1Component } = await import(/* webpackChunkName: "comp1" */ "./comp1/comp1.component");
 
     // 将组件载入到ng-template中
-    const loadedComponent = this.dyncomp.createComponent(
-      this.cfr.resolveComponentFactory(Comp1Component)
-    );
+    const loadedComponent = this.dyncomp.createComponent(this.cfr.resolveComponentFactory(Comp1Component));
   }
 }
 ```
