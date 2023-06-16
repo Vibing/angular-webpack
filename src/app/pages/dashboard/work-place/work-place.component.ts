@@ -24,19 +24,18 @@ export class WorkPlaceComponent implements OnInit {
   ngOnInit() {}
 
   async lazyLoadModuleAndComponent() {
-    const { InfoModule } = await import(
-      '../../../common-modules/info/info.module'
-    );
+    const module = await import('../../../common-modules/info/info.module');
 
     const moduleFactory: NgModuleFactory<any> =
-      await this.complier.compileModuleAsync(InfoModule);
+      await this.complier.compileModuleAsync(module.InfoModule);
 
     const moduleRef: NgModuleRef<any> = moduleFactory.create(this.injector);
-    // 通过模块实例获取组件
-    const component = moduleRef.instance.getInfoComponent();
+
     // 解析组件
     const componentFactory: any =
-      moduleRef.componentFactoryResolver.resolveComponentFactory(component);
+      moduleRef.componentFactoryResolver.resolveComponentFactory(
+        module.InfoComponent
+      );
     // 清除container
     this.containerRef.clear();
     // 创建组件

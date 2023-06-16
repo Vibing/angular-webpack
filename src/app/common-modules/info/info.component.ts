@@ -1,5 +1,19 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Compiler,
+  Component,
+  ComponentRef,
+  EventEmitter,
+  Injector,
+  Input,
+  NgModuleFactory,
+  NgModuleRef,
+  OnInit,
+  Output,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { produce } from 'immer';
+import { NzProgressComponent } from 'ng-zorro-antd/progress';
 
 @Component({
   selector: 'common-info',
@@ -8,6 +22,8 @@ import { produce } from 'immer';
 export class InfoComponent implements OnInit {
   @Input() data: any;
   @Output() callbackEmit: EventEmitter<any> = new EventEmitter();
+  @ViewChild('viewContainer', { read: ViewContainerRef })
+  containerRef!: ViewContainerRef;
 
   _originData: any = {
     info: {
@@ -28,21 +44,44 @@ export class InfoComponent implements OnInit {
 
   date = null;
 
-  constructor() {}
+  constructor(private complier: Compiler, private injector: Injector) {}
 
   ngOnInit() {}
 
   transformDataFn(value: any) {
-    console.log('transform-->', value.info.name);
     this.transformData = value;
   }
 
   callback() {
     this.callbackEmit.emit('emit success!');
-    for (let index = 0; index < 1000; index++) {
-      this.originData = produce(this.originData, (draft: any) => {
-        draft.info.name = { age: 'Tom' + index };
-      });
-    }
+    this.originData = produce(this.originData, (draft: any) => {
+      draft.info.name = { age: 'Tom' };
+    });
+
+    this.loadThirdModule();
+  }
+
+  /**
+   * 按需加载第三方模块和组件
+   */
+  loadThirdModule() {
+    import('ng-zorro-antd/progress').then(async (module) => {
+      const moduleFactory: NgModuleFactory<any> =
+        await this.complier.compileModuleAsync(module.NzProgressModule);
+
+      const moduleRef: NgModuleRef<any> = moduleFactory.create(this.injector);
+      // 解析组件
+      const componentFactory: any =
+        moduleRef.componentFactoryResolver.resolveComponentFactory(
+          module.NzProgressComponent
+        );
+      // 清除container
+      this.containerRef.clear();
+      // 创建组件
+      const componentRef: ComponentRef<NzProgressComponent> =
+        this.containerRef.createComponent(componentFactory);
+
+      componentRef.instance.nzPercent = 75;
+    });
   }
 }
