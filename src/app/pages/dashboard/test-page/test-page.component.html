@@ -1,0 +1,32 @@
+<nav>
+  <ul>
+    <ng-container *ngFor="let menu of menus; let i = index">
+      <li
+        [class]="{ active: activityIndex === i }"
+        (click)="scrollToSection(i)"
+      >
+        menu
+      </li>
+    </ng-container>
+  </ul>
+</nav>
+
+<div
+  #content
+  class="content"
+  (scroll)="onScroll($event)"
+  style="margin-top: 100px"
+>
+  <section #anchorContainer style="height: 200px; border: 1px solid">
+    Section 1 内容 {{ numbers[0] }}
+  </section>
+  <section #anchorContainer style="height: 200px; border: 1px solid">
+    Section 2 内容 {{ numbers[1] }}
+  </section>
+  <section #anchorContainer style="height: 200px; border: 1px solid">
+    Section 3 内容 {{ numbers[2] }}
+  </section>
+  <section #anchorContainer style="height: 200px; border: 1px solid">
+    Section 4 内容 {{ numbers[3] }}
+  </section>
+</div>

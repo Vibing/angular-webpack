@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { WorkPlaceComponent } from './work-place/work-place.component';
+import { TestPageComponent } from './test-page/test-page.component';
 
 const routes: Routes = [
   {
@@ -22,11 +23,15 @@ const routes: Routes = [
     path: 'workplace',
     component: WorkPlaceComponent,
   },
+  {
+    path: 'test',
+    component: TestPageComponent,
+  },
 ];
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
-  declarations: [],
+  declarations: [TestPageComponent],
 })
 export class DashboardModule {}
