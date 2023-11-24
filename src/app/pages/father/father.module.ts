@@ -13,7 +13,11 @@ const routes: Routes = [
     component: NoDataComponent,
   },
   {
-    path: ':id(/:cid)',
+    path: ':id',
+    redirectTo: ':id/:cid',
+  },
+  {
+    path: ':id/:cid',
     pathMatch: 'prefix',
     component: ChildAComponent,
   },
