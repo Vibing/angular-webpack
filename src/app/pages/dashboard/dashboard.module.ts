@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { WorkPlaceComponent } from './work-place/work-place.component';
 import { TestPageComponent } from './test-page/test-page.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'welcome',
     loadChildren: () =>

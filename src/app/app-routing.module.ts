@@ -12,6 +12,13 @@ const routes: Routes = [
       ).then((m) => m.DashboardModule),
   },
   {
+    path: 'disabled',
+    loadChildren: () =>
+      import(
+        /* webpackChunkName: "DashboardModule" */ './pages/dashboard/disabled/disabled.module'
+      ).then((m) => m.DisabledTestModule),
+  },
+  {
     path: 'father',
     component: LayoutContainerComponent,
     children: [
